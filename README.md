@@ -1,6 +1,6 @@
 # 💻 90 Days of Dev
 
-Hi, I'm Sudeep — and this repository is my log for the **#90DaysOfDev** challenge!
+Hi, I'm Sudeep — and this repository is my log for the **#90DaysOfDev** journey!
 
 ## 🌟 What I'm Focusing On
 - Daily DSA problem-solving
