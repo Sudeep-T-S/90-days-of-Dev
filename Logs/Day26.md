@@ -16,5 +16,3 @@
 
 ## 💭 Thoughts
 Chipping away at the fundamentals, one concept at a time. 💪
-
-#JavaDeveloper #LeetCode #DSA #BuildInPublic #OpenToWork
