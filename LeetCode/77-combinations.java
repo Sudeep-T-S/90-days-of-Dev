@@ -1,27 +1,23 @@
 //Using Backtracking
 class Solution {
-    public List<List<Integer>> combine(int n, int k) 
-  
-        List<List<Integer>> resultList = new ArrayList<>();
-        Stack<List<Integer>> stack = new Stack<>();
-        stack.push(new ArrayList<>()); 
+    public List<List<Integer>> combine(int n, int k) {
+        
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(1, n, k, new ArrayList<>(), result);
+        return result;
+    }
 
-        while (!stack.isEmpty()) {
-            List<Integer> curr = stack.pop();
-
-            if (curr.size() == k) {
-                resultList.add(new ArrayList<>(curr));
-            } else {
-                int start = curr.isEmpty() ? 1 : curr.get(curr.size() - 1) + 1;
-                
-                for (int i = n; i >= start; i--) {
-                    List<Integer> next = new ArrayList<>(curr);
-                    next.add(i);
-                    stack.push(next);
-                }
-            }
+    private void backtrack(int start, int n, int k, List<Integer> path, List<List<Integer>> result) {
+        
+        if (path.size() == k) {
+            result.add(new ArrayList<>(path));
+            return;
         }
 
-        return resultList;
+        for (int i = start; i <= n - (k - path.size()) + 1; i++) {
+            path.add(i);
+            backtrack(i + 1, n, k, path, result);
+            path.remove(path.size() - 1);
+        }
     }
 }
