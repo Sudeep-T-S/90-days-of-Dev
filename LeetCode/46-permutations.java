@@ -1,29 +1,29 @@
- //Using Backtracking
+//Using Backtracking
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
+        
+        List<List<Integer>> result = new ArrayList<>();
+        boolean[] used = new boolean[nums.length];
+        backtrack(nums, used, new ArrayList<>(), result);
+        return result;
+    }
 
-        List<List<Integer>> resultList = new ArrayList<>();
-        Stack<List<Integer>> stack = new Stack<>();
-        stack.push(new ArrayList<>());
-
-        while (!stack.isEmpty()) {
-            List<Integer> curr = stack.pop();
-            
-            if (curr.size() == nums.length) {
-                resultList.add(new ArrayList<>(curr));
-            } else {
-                
-                for (int num : nums) {
-                    
-                    if (!curr.contains(num)) {
-                        List<Integer> next = new ArrayList<>(curr);
-                        next.add(num);
-                        stack.push(next);
-                    }
-                }
-            }
+    private void backtrack(int[] nums, boolean[] used, List<Integer> current, List<List<Integer>> result) {
+        if (current.size() == nums.length) {
+            result.add(new ArrayList<>(current));
+            return;
         }
 
-        return resultList;
+        for (int i = 0; i < nums.length; i++) {
+            
+            if (used[i]) 
+                continue;
+            
+            used[i] = true;
+            current.add(nums[i]);
+            backtrack(nums, used, current, result);
+            current.remove(current.size() - 1);
+            used[i] = false;
+        }
     }
 }
