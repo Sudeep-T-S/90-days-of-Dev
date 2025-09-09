@@ -1,3 +1,56 @@
+//Using Union-Find (Disjoint Set)
+class Solution {
+
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+
+        UnionFind uf = new UnionFind(n);
+        for(int[] e : edges) 
+            uf.union(e[0], e[1]);
+        
+        return uf.find(source) == uf.find(destination);
+    }
+
+    class UnionFind {
+
+        int[] parent;
+        int[] rank;
+
+        UnionFind(int size) {
+
+            parent = new int[size];
+            rank = new int[size];
+            for (int i = 0; i < size; i++) 
+                parent[i] = i;
+        }
+
+        int find(int x) {
+
+            if (parent[x] != x) 
+                parent[x] = find(parent[x]);
+
+            return parent[x];
+        }
+
+        void union(int a, int b) {
+
+            int rootA = find(a);
+            int rootB = find(b);
+            if (rootA != rootB) {
+                
+                if (rank[rootA] < rank[rootB]) 
+                    parent[rootA] = rootB;
+                else if (rank[rootB] < rank[rootA]) 
+                    parent[rootB] = rootA;
+                else {
+                    parent[rootB] = rootA;
+                    rank[rootA]++;
+                }
+            }
+        }
+    }
+}
+
+//Using DFS
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
 
