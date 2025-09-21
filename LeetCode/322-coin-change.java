@@ -1,3 +1,4 @@
+//Using Bottom-Up Dynamic Programming
 class Solution {
 
     public int coinChange(int[] coins, int amount) {
@@ -16,5 +17,38 @@ class Solution {
         }
         
         return dp[amount] > amount ? -1 : dp[amount];
+    }
+}
+
+//Using Breadth-First Search (BFS)
+class Solution {
+    
+    public int coinChange(int[] coins, int amount) {
+        
+        if (amount == 0) 
+            return 0;
+        
+        boolean[] visited = new boolean[amount + 1];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{amount, 0});
+        
+        while (!queue.isEmpty()) {
+            
+            int[] current = queue.poll();
+            int rem = current[0], steps = current[1];
+            for (int coin : coins) {
+                
+                int nextRem = rem - coin;
+                if (nextRem == 0) 
+                    return steps + 1;
+                
+                if (nextRem > 0 && !visited[nextRem]) {
+                    visited[nextRem] = true;
+                    queue.offer(new int[]{nextRem, steps + 1});
+                }
+            }
+        }
+        
+        return -1;
     }
 }
