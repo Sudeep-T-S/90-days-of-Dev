@@ -3,7 +3,7 @@
 ## ✅ What I Did Today
 - **LeetCode (Solved):**  
   • Minimum Falling Path Sum (Problem #931)
-  • Minimum Falling Path Sum (Problem #1289)
+  • Minimum Falling Path Sum II (Problem #1289)
 
 - **SpringBoot:**  
   • Kafka 
